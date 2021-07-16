@@ -2,7 +2,7 @@
 all: test-lock
 
 clean:
-	rm -f test-lock
+	rm -f test-lock lock.o liblock.so
 
 lock: lock.c lock.h
 	gcc -c -Wall -Werror -fpic lock.c
