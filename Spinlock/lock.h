@@ -1,10 +1,10 @@
 #ifndef __lock_h__
 #define __lock_h__
 
-typedef volatile int pthread_spinlock_t;
+typedef volatile int my_spinlock_t;
 
-extern int pthread_spin_init(pthread_spinlock_t *lock);
-extern int pthread_spin_lock(pthread_spinlock_t *lock);
-extern int pthread_spin_unlock(pthread_spinlock_t *lock);
+extern int my_spin_init(my_spinlock_t *lock);
+extern int my_spin_lock(my_spinlock_t *lock);
+extern int my_spin_unlock(my_spinlock_t *lock);
 
 #endif
