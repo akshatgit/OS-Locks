@@ -3,4 +3,5 @@
 MCS-Lock/test-lock
 RW-Lock/test-lock
 Spinlock/test-lock
+Tick-Lock/test-lock
 *.dSYM
