@@ -11,8 +11,10 @@ void *worker(void *arg) {
     int i;
     for (i = 0; i < loops; i++) {
     	my_spin_lock(&lock);
-	    counter++;
+//	printf("Acq TID: %ld\n", pthread_self());
+	counter++;
     	my_spin_unlock(&lock);
+//   	printf("Release TID: %ld\n", pthread_self());
     }
     return NULL;
 }

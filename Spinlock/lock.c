@@ -1,4 +1,5 @@
 #include "lock.h"
+#include <stdio.h>
 
 int my_spin_init(my_spinlock_t *lock) {
   // Initialize the lock to 0 (free).
@@ -20,7 +21,7 @@ int my_spin_lock(my_spinlock_t *lock) {
     do {
       expected =  __atomic_load_n(lock, __ATOMIC_RELAXED);
     } while(expected != 0);
-  } while(__atomic_compare_exchange_n(lock, &expected,
+  } while(!__atomic_compare_exchange_n(lock, &expected,
 	1, 1, __ATOMIC_ACQUIRE, __ATOMIC_RELAXED));
   // Finally, acquired the lock.
   return 0;
@@ -28,7 +29,8 @@ int my_spin_lock(my_spinlock_t *lock) {
 
 int my_spin_unlock(my_spinlock_t *lock) {
   int unlock = 0;
-  // Mark the lock free. 
+  // Mark the lock free.
   __atomic_store(lock, &unlock, __ATOMIC_RELEASE);
   return 0;
 }
+
