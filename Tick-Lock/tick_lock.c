@@ -10,17 +10,13 @@ void ticket_lock_acquire(ticket_lock *lock)
 {
   // Obtain my ticket.
   int my_ticket = __atomic_fetch_add(&lock->next_ticket,
-			1, __ATOMIC_ACQ_REL);
-  int expected = my_ticket;
+			1, __ATOMIC_SEQ_CST);
   // Loop until it is my turn to acquire the lock.
-  while (!__atomic_compare_exchange_n(&lock->currently_serving, &my_ticket, expected, 1,__ATOMIC_SEQ_CST, __ATOMIC_SEQ_CST)){
-    my_ticket = expected;
-  };
+  while (lock->currently_serving != my_ticket);
 }
 
 void ticket_lock_release(ticket_lock *lock)
 {
   // Move the current ticket by 1.
-  __atomic_add_fetch(&lock->currently_serving, 1,
-	__ATOMIC_SEQ_CST);
+  lock->currently_serving = lock->currently_serving + 1;
 }
