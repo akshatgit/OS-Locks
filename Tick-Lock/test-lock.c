@@ -23,13 +23,17 @@ int main(int argc, char *argv[]) {
 	exit(1); 
     } 
     loops = atoi(argv[1]);
-    pthread_t p1, p2;
+    pthread_t p1, p2, p3, p4;
     ticket_lock_init(&lock);
     printf("Initial value : %d\n", counter);
     pthread_create(&p1, NULL, worker, NULL); 
     pthread_create(&p2, NULL, worker, NULL);
+    pthread_create(&p3, NULL, worker, NULL);
+    pthread_create(&p4, NULL, worker, NULL);    
     pthread_join(p1, NULL);
     pthread_join(p2, NULL);
+    pthread_join(p3, NULL);
+    pthread_join(p4, NULL);
     printf("Final value   : %d\n", counter);
     return 0;
 }
