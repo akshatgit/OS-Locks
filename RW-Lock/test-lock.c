@@ -12,7 +12,7 @@ void *worker(void *arg) {
     for (i = 0; i < loops; i++) {
         if (i%100 == 0){
             rwlock_reader_acquire(&lock);
-            printf("Ack reader lock: %d\n", i);
+            //printf("Ack reader lock: %d\n", counter);
             rwlock_reader_release(&lock);
         }
     	rwlock_writer_acquire(&lock);

@@ -35,6 +35,6 @@ void rwlock_writer_acquire(rwlock *lock) {
 
 void rwlock_writer_release(rwlock *lock) {
   // Writer releasing lock. Decrement by 1.
-  __atomic_sub_fetch(lock, -WA_FLAG,
+  __atomic_sub_fetch(lock, WA_FLAG,
 	__ATOMIC_SEQ_CST);
 }
