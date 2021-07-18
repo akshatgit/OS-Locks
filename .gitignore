@@ -1,5 +1,6 @@
 *.so
 *.o
+MCS-Lock/test-lock
 RW-Lock/test-lock
 Spinlock/test-lock
 *.dSYM
