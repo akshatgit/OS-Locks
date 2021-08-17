@@ -3,5 +3,6 @@
 MCS-Lock/test-lock
 RW-Lock/test-lock
 Spinlock/test-lock
-Tick-Lock/test-lock
+Ticket-Lock/test-lock
+K42-Lock/test-lock
 *.dSYM

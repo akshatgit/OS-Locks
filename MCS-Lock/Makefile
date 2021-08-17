@@ -2,7 +2,7 @@
 all: test-lock
 
 clean:
-	rm -f test-lock mcs_lock.o rw_liblock.so
+	rm -f test-lock mcs_lock.o libmcs_lock.so
 
 lock: mcs_lock.c mcs_lock.h
 	gcc -g -c -Wall -Werror -fpic mcs_lock.c

@@ -2,7 +2,7 @@
 all: test-lock
 
 clean:
-	rm -f test-lock tick_lock.o rw_liblock.so
+	rm -f test-lock tick_lock.o tick_liblock.so
 
 lock: tick_lock.c tick_lock.h
 	gcc -g -c -Wall -Werror -fpic tick_lock.c
