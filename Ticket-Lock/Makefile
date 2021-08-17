@@ -2,12 +2,12 @@
 all: test-lock
 
 clean:
-	rm -f test-lock tick_lock.o tick_liblock.so
+	rm -f test-lock ticket_lock.o ticket_liblock.so
 
-lock: tick_lock.c tick_lock.h
-	gcc -g -c -Wall -Werror -fpic tick_lock.c
-	gcc -g -shared -o libtick_lock.so tick_lock.o
-	chmod +x libtick_lock.so tick_lock.o
+lock: ticket_lock.c ticket_lock.h
+	gcc -g -c -Wall -Werror -fpic ticket_lock.c
+	gcc -g -shared -o libticket_lock.so ticket_lock.o
+	chmod +x libticket_lock.so ticket_lock.o
 
 test-lock: lock	test-lock.c
-	gcc -L. -o test-lock test-lock.c -Wall -pthread -g -ltick_lock
+	gcc -L. -o test-lock test-lock.c -Wall -pthread -g -lticket_lock
