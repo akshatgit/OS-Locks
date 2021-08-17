@@ -1,8 +1,8 @@
 
-all: threads-lock-2
+all: test-lock
 
 clean:
-	rm -f threads-lock-2
+	rm -f test-lock
 
-threads-lock-2: threads-lock-2.c common.h common_threads.h
-	gcc -o threads-lock-2 threads-lock-2.c -Wall -pthread
+test-lock: test-lock.c common.h common_threads.h
+	gcc -o test-lock test-lock.c -Wall -pthread
