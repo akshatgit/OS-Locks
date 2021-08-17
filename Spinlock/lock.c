@@ -1,14 +1,14 @@
 #include "lock.h"
 #include <stdio.h>
 
-int my_spin_init(my_spinlock_t *lock) {
+int pthread_spin_init(pthread_spinlock_t *lock) {
   // Initialize the lock to 0 (free).
   int init_value = 0;
   __atomic_store(lock, &init_value, __ATOMIC_RELAXED);
   return 0;
 }
 
-int my_spin_lock(my_spinlock_t *lock) {
+int pthread_spin_lock(pthread_spinlock_t *lock) {
   int expected = 0;
   if (__atomic_compare_exchange_n(lock, &expected,
 	1, 1, __ATOMIC_ACQUIRE, __ATOMIC_RELAXED)) {
@@ -27,7 +27,7 @@ int my_spin_lock(my_spinlock_t *lock) {
   return 0;
 }
 
-int my_spin_unlock(my_spinlock_t *lock) {
+int pthread_spin_unlock(pthread_spinlock_t *lock) {
   int unlock = 0;
   // Mark the lock free.
   __atomic_store(lock, &unlock, __ATOMIC_RELEASE);
