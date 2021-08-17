@@ -1,4 +1,4 @@
-#include "tick_lock.h"
+#include "ticket_lock.h"
 
 void ticket_lock_init(ticket_lock *lock)
 {

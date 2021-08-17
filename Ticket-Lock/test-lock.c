@@ -1,4 +1,4 @@
-#include "tick_lock.h"
+#include "ticket_lock.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>

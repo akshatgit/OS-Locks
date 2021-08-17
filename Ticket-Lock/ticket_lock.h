@@ -1,5 +1,5 @@
-#ifndef __tick_lock_h__
-#define __tick_lock_h__
+#ifndef __ticket_lock_h__
+#define __ticket_lock_h__
 
 typedef struct lock {  
   int next_ticket;
