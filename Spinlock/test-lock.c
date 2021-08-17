@@ -5,15 +5,15 @@
 
 volatile int counter = 0; 
 int loops;
-my_spinlock_t lock;
+pthread_spinlock_t lock;
 
 void *worker(void *arg) {
     int i;
     for (i = 0; i < loops; i++) {
-    	my_spin_lock(&lock);
+    	pthread_spin_lock(&lock);
 //	printf("Acq TID: %ld\n", pthread_self());
 	counter++;
-    	my_spin_unlock(&lock);
+    	pthread_spin_unlock(&lock);
 //   	printf("Release TID: %ld\n", pthread_self());
     }
     return NULL;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
     } 
     loops = atoi(argv[1]);
     pthread_t p1, p2;
-    my_spin_init(&lock);
+    pthread_spin_init(&lock);
     printf("Initial value : %d\n", counter);
     pthread_create(&p1, NULL, worker, NULL); 
     pthread_create(&p2, NULL, worker, NULL);
